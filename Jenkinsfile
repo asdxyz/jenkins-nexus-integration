@@ -9,7 +9,7 @@ pipeline {
     environment {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "192.168.1.116:8081"
+        NEXUS_URL = "3.8.142.41:8081"
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
 
@@ -83,8 +83,8 @@ pipeline {
         stage('Build and Push Image ') {
             steps {
                 script {
-                    docker.withRegistry('https://192.168.1.116:5000', "$NEXUS_CREDENTIAL_ID") {
-                        def customImage = docker.build("192.168.1.116:5000/image/springtest:$VERSION")
+                    docker.withRegistry('http://3.8.142.41/:5000', "$NEXUS_CREDENTIAL_ID") {
+                        def customImage = docker.build("3.8.142.41:5000/image/springtest:$VERSION")
                             customImage.push()
 
                      }
